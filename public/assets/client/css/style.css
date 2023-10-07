@@ -1,0 +1,329 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body {
+    background-color: #0A0A0A;
+}
+
+.all-content {
+    width: 100%;
+    background-color: #0A0A0A;
+    font-size: 18px;
+    color: white;
+}
+
+.nav-link:focus, .nav-link:hover {
+    color: #949191;
+}
+
+.navbar-toggler-icon.custom-toggler::before {
+    content: '\2630'; /* Mã Unicode của biểu tượng dấu ba gạch */
+    color: red; /* Thay đổi màu sắc ở đây */
+}
+
+/* navbar */
+#navbar {
+    height: 10vh;
+    background-color: black;
+}
+
+#navbarSupportedContent {
+    z-index: 10;
+}
+
+.container-fluid {
+    color: #949191;
+    background-color: black;
+}
+
+.container-fluid a, ul > li > a {
+    color: #949191;
+}
+
+.navbar-brand {
+    font-size: 35px;
+    margin-right: 100px;
+}
+
+.fa-cart-shopping {
+    font-size: 30px;
+}
+
+
+.navbar-brand:hover,
+.nav-item :hover,
+.fa-cart-shopping:hover {
+    color: white;
+}
+
+@media screen and (max-width: 991px) {
+    #navbar .container {
+        max-width: unset;
+    }
+    .fa-solid.fa-cart-shopping {
+        margin-top:20px ;
+    }
+}
+
+/* home */
+#home {
+    width: 100%;
+    height: 90vh;
+}
+
+.carousel-inner:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), transparent 50%, rgba(0, 0, 0, 0.7));
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 90vh;
+}
+
+.carousel-caption {
+    z-index: 2;
+    bottom: 220px;
+}
+
+.carousel-caption h5{
+    font-size: 40px;
+    font-weight: bold;
+    transform: translateY(-100%);
+}
+
+
+/* gallery */
+#gallery {
+    width: 100%;
+    /* height: 100vh; */
+    background-color: #0A0A0A;
+}
+
+.header-content {
+    color: #949191;
+    font-size: 21px;
+    word-spacing: 4px;
+}
+
+.category {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Đảm bảo chiều rộng container là 100% */
+    box-sizing: border-box;
+}
+
+
+.image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Để hình ảnh điều chỉnh theo kích thước container */
+}
+
+#gallery p {
+    color: #949191;
+}
+
+/* footer */
+#footer {
+    width: 100%;
+    background-color: black;
+}
+
+#footer .container {
+    padding-top: 30px;
+}
+
+#footer .text {
+    color: #949191;
+}
+
+#footer .icon {
+    font-size: 30px;
+}
+
+
+@media (max-width: 768px) {
+    .custom-center {
+      display: flex;
+      justify-content: center;
+    }
+    #footer {
+        height: 70vh;
+    }
+
+}
+
+/* Page About */
+
+#about {
+    width: 100%;
+    /* height: 450vh; */
+    background-color: #0A0A0A;
+}
+
+
+#about .text-center p {
+    color: #949191;
+    font-size: 14px;
+}
+
+.main-img {
+    width: 100%;
+    height: 450px;
+}
+
+.main-img img {
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+}
+
+#about .note1 {
+    position: absolute;
+    height: 250px;
+    width: 400px;
+    transform: translate(20%, -50%);
+    background-color: white;
+    color: #949191;
+    font-size: 14px;
+    z-index: 2;
+}
+
+.content {
+    margin-top: 10%;
+    margin-bottom: 20%;
+}
+
+.content p {
+    color: #949191;
+}
+
+#about .note1 h1 {
+    color: black;
+    font-weight: bold;
+}
+
+#about .image {
+    width: 100%;
+    height: 60%;
+}
+
+.image img,
+.image2 img,
+.image3 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#about .image2 {
+    width: 100%;
+    height: 20%;
+}
+
+#about .image3 {
+    width: 100%;
+    height: 30%;
+    margin-top: 50%;
+}
+
+#about .note2 {
+    position: absolute;
+    height: 200px;
+    width: 400px;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    color: #949191;
+    font-size: 14px;
+}
+
+.fix-content {
+    padding-top: 16%;
+}
+
+@media screen and (min-width: 768px) {
+    #about .note2 {
+        transform: translate(-50%, -70%);
+    }
+
+}
+
+@media screen and (max-width:992px) {
+
+    /* .fix-content h1 {
+        font-size: 18px;
+    }
+    .fix-content p {
+        font-size: 16px;
+    } */
+}
+
+@media screen and (max-width:769px) {
+    #about .note1,
+    #about .note2 {
+        all:unset;
+    }
+    #about .note1,
+    #about .note2{
+        height: 250px;
+        width: 100%;
+        color: #949191;
+        font-size: 16px;
+        transform: none;
+    }
+
+    #about .note1 h1 {
+        color: white;
+    }
+
+
+    #about .image {
+        height: 20%;
+    }
+
+    #about .image3 {
+        height: 20%;
+        margin-top: 10%;
+    }
+
+
+}
+
+
+/* contact */
+
+#contact .bgr {
+    background-color: white;
+}
+
+#contact .col-12 {
+    padding: 0;
+    margin: 0;
+}
+
+#contact .bgr .row h4,
+#contact .bgr .row p {
+    color: #0A0A0A;
+}
+
+#contact .image {
+    width: 100%;
+    height: 100%;
+}
