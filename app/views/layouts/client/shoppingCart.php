@@ -27,9 +27,10 @@
 
                         <?php
                             foreach ($products as $key=>$product) {
-                                if($key != "sum") {
+
+                                if(is_numeric($key)) {
                                 ?>
-                                <tr class="fix-row">
+                                <tr class="fix-row" data-product-id ="<?php echo $product["id"]; ?>">
                                     <td>
                                         <input type="checkbox" class="custom-checkbox">
                                     </td>
@@ -41,14 +42,36 @@
                                     <td>
                                         <p><?php echo $product["title"]; ?></p>
                                     </td>
-                                    <td><?php echo $product["price"]; ?> $</td>
+                                    <td id="price"><?php echo $product["price"]; ?> $</td>
                                     <td>
-                                        <input type="number" class="text-center " id="item1_quantity" value="<?php echo $product["quantity"]; ?>" min="1"  onwheel="event.preventDefault()">
+                                        <input type="number" class="text-center js-quantity" id="item<?php echo $product["id"];?>_quantity" value="<?php echo $product["quantity"]; ?>" min="1"  onwheel="event.preventDefault()">
 
                                     </td>
-                                    <td><?php echo $product["quantity"]*$product["price"]; ?></td>
-                                    <td>X</td>
+                                    <td id="total"><?php echo $product["quantity"]*$product["price"];?> $</td>
+                                    <td class="delete">X</td>
                                 </tr>
+
+                                <tr class="fix-row2" data-product-id ="<?php echo $product["id"]; ?>">
+                                    <td>
+                                        <input type="checkbox" class="custom-checkbox">
+                                    </td>
+                                    <td class="d-flex justify-content-center">
+                                        <div class="image">
+                                            <img src="" alt="">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p><?php echo $product["title"]; ?></p>
+                                        <div class="d-flex justify-content-around mt-3">
+                                            <input type="number" class="text-center js-quantity" id="item<?php echo $product["id"];?>_quantity" value="<?php echo $product["quantity"]; ?>" min="1"  onwheel="event.preventDefault()">
+<!--                                            <p id="price">--><?php //echo $product["price"]; ?><!-- $</p>-->
+                                            <p id="total"><?php echo $product["quantity"]*$product["price"];?> $</p>
+                                            <p>X</p>
+                                        </div>
+                                    </td>
+                                </tr>
+
+
                                 <?php
                                 }
                             }
@@ -56,47 +79,29 @@
 
 
 
-                    <tr class="fix-row2">
-                        <td>
-                            <input type="checkbox" class="custom-checkbox">
-                        </td>
-                        <td class="d-flex justify-content-center">
-                            <div class="image">
-                                <img src="" alt="">
-                            </div>
-                        </td>
-                        <td>
-                            <p>Pain Au Chocolat</p>
-                            <div class="d-flex justify-content-around mt-3">
-                                <input type="number" class="text-center " id="item1_quantity" value="1" min="1"  onwheel="event.preventDefault()">
-                                <p>3.45 $</p>
-                                <p>X</p>
-                            </div>
-    
-                        </td>
-                    </tr>
+
                     
                 </tbody>
             </table>
         
             <div class="row">
                 <div class="col-9 text-end ">Total: </div>
-                <div class="col-3 text-center fs-5 fw-bold"><?php  echo $products["sum"]; ?></div>
+                <div class="col-3 text-center fs-5 fw-bold js-total"><?php  echo (isset($products["sum"]))?$products["sum"]:0; ?> $</div>
             </div>
             <div class="row my-5">
                 <div class="col-12 text-center text-md-end ">
-                    <button class="order-cart" data-item-id="item1">Procced To Checkout</button>
+                    <button class="order-cart">Procced To Checkout</button>
                 </div>
             </div>
         </div>
 
         <div class="checkout">
             <div class="row mt-3">
-                <!-- col left of checkout -->
+<!--                 col left of checkout -->
                 <div class="col-12 col-md-6">
                     <div class="row">
                         <div class="col-12 col-md-6  mb-4">
-                            Your name
+                            Your name*
                             <input type="text" id="name" placeholder="Your name">
 
                         </div>
@@ -110,34 +115,12 @@
                         <div class="col-12 col-md-6  mb-4">
                             Delivery time*
                             <select id="dropdown">
-                                <option value="option1">As soon as possible</option>
-                                <option value="option2">By 10:00 AM</option>
-                                <option value="option3">By 10:30 AM</option>
-                                <option value="option4">By 12:00 PM</option>
-                                <option value="option5">By 12:30 PM</option>
+                                <option value="19:00">As soon as possible</option>
+                                <option value="10:00">By 10:00 AM</option>
+                                <option value="10:30">By 10:30 AM</option>
+                                <option value="12:00">By 12:00 PM</option>
+                                <option value="12:30">By 12:30 PM</option>
                             </select>
-                        </div>
-                        <div class="col-12 col-md-6  mb-4">
-                            Drop-off options
-                            <div class="my-2">
-                                <div class="row">
-                                    <div class="col-5 d-flex ">
-                                        <div class="custom-toggle">
-                                            <div class="small-checked" onclick="toggleChecked(this)"></div>
-                                        </div>
-                                        <div class="fz ms-2">Hand it to me</div>
-    
-                                    </div>
-                                    
-                                    <div class="col-7 d-flex">
-                                        <div class="custom-toggle">
-                                            <div class="small-checked" onclick="toggleChecked(this)"></div>
-                                        </div>
-                                        <div class="fz ms-2">Leave it at my door</div>
-    
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -151,17 +134,15 @@
                     <div class="row ">
                         <div class="col-12 mb-4">
                             CREDIT CARD
-                            <input type="number" placeholder="Card Number">
+                            <input type="number" id="cardNumber" placeholder="Card Number">
                             <div class="row mt-2">
                                 <div class="col-8">
-                                    <input type="text" placeholder="Full Name">
+                                    <input type="text" id="cardName" placeholder="Full Name">
                                 </div>
-                                <div class="col-2">
-                                    <input type="date">
+                                <div class="col-4">
+                                    <input type="date" id="cardDate">
                                 </div>
-                                <div class="col-2">
-                                    <input type="text" placeholder="CVC">
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -171,7 +152,7 @@
                             Additional comments
                         </div>
                         <div class="col-12">
-                            <textarea name="" id="" cols="75" rows="3" ></textarea>
+                            <textarea id="comment" cols="75" rows="3" ></textarea>
                         </div>
                     </div>
 
@@ -188,19 +169,19 @@
                         </div>
                         <div class="row py-3">
                             <div class="col-6">Subtotal: </div>
-                            <div class="col-6 text-end">14.25 $</div>
+                            <div class="col-6 text-end subTotal">0 $</div>
                         </div>
                         <div class="row py-3">
                             <div class="col-6">Delivery</div>
-                            <div class="col-6 text-end">2.15 $</div>
+                            <div class="col-6 text-end delivery">0 $</div>
                         </div>
                         <div class="row py-3">
                             <div class="col-6">Total: </div>
-                            <div class="col-6 text-end">16.40 $</div>
+                            <div class="col-6 text-end total">0 $</div>
                         </div>
                         <div class="row py-3">
                             <div class="col-12 d-flex justify-content-center">
-                                <button type="submit" class="order">Complete Order</button>
+                                <button type="submit" class="order submitOrder">Complete Order</button>
                             </div>
                         </div>
                         <div class="row">

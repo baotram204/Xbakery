@@ -216,7 +216,7 @@
                                 <div class="card-body">
                                     <div class="row text-center justify-content-around">
                                         <div class="col-4">
-                                            <input type="number" class="text-center form-control" id="item<?php echo $product["id"]; ?>_quantity" value="1" min="1"  onwheel="event.preventDefault()">
+                                            <input type="number" class="text-center form-control js-quantity" id="item<?php echo $product["id"]; ?>_quantity" value="1" min="1"  onwheel="event.preventDefault()">
                                         </div>
 
                                         <div class="col-7 text-end">

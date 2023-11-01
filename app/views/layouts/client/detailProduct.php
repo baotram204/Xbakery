@@ -36,7 +36,7 @@
                     <p>2.7 $</p>
                     <div class="row">
                         <div class="col-4 col-md-2">
-                            <input type="number" class="text-center" id="item<?php echo $product['id']; ?>_quantity" value="1" min="1"  onwheel="event.preventDefault()">
+                            <input type="number" class="text-center js-quantity" id="item<?php echo $product['id']; ?>_quantity" value="1" min="1"  onwheel="event.preventDefault()">
                         </div>
 
                         <div class="col-7 col-md-4">

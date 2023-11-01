@@ -47,6 +47,23 @@ class App {
             }
         }
 
+        if ($url == 'admin') {
+            unset($urlArr[0]);
+
+            // Thiết lập controller từ phần tiếp theo của URL
+            $this->__controller = !empty($urlArr[1]) ? $urlArr[1] : 'login';
+            unset($urlArr[1]); // Loại bỏ phần tử controller từ mảng
+
+
+            // Thiết lập action từ phần tiếp theo của URL
+            $this->__action = !empty($urlArr[2]) ? $urlArr[2] : 'index';
+            unset($urlArr[2]); // Loại bỏ phần tử action từ mảng
+
+            // Các phần còn lại trong mảng sẽ là parameters
+            $this->__params = array_values($urlArr);
+
+        }
+
     }
 
     public function handleURL() {
@@ -56,8 +73,7 @@ class App {
 
         $urlArr = array_filter(explode("/", $url));
         $urlArr = array_values($urlArr);
-
-
+        $urlArrForAdmin = $urlArr;
 
         if (!empty($urlArr[0])) {
             $this->__controller = $urlArr[0];
@@ -70,19 +86,31 @@ class App {
 
         $this->__params = array_values($urlArr);
 
-        $controllerFileName = "app/controllers/client/" . ucfirst($this->__controller) . '.php';
+        if ($this->__controller == "admin") {
+            $this->configsActionParam($this->__controller, $urlArrForAdmin);
+            $controllerFileName = "app/controllers/admin/" . ucfirst($this->__controller) . '.php';
+            $this->checkFile($controllerFileName, 'admin');
+        } else {
+            $this->configsActionParam($this->__controller, $urlArr);
+            $controllerFileName = "app/controllers/client/" . ucfirst($this->__controller) . '.php';
+            $this->checkFile($controllerFileName, 'client');
+        }
 
-        $this->configsActionParam($this->__controller, $urlArr);
+    }
 
+    function checkFile($controllerFileName, $type){
         if (file_exists($controllerFileName)) {
             require_once $controllerFileName;
 
-            $controllerClassName = 'app\controllers\client\\' . ucfirst($this->__controller);
+            $controllerClassName = 'app\controllers\\'.$type.'\\' . ucfirst($this->__controller);
             if (class_exists($controllerClassName)) {
                 $controllerInstance = new $controllerClassName();
-
-                echo $this->__controller;
-                echo $this->__action;
+//
+//                echo $this->__controller;
+//                echo $this->__action;
+//                echo "<pre>";
+//                print_r($this->__params);
+//                echo "</pre>";
 
                 if (method_exists($controllerInstance, $this->__action)) {
                     call_user_func_array([$controllerInstance, $this->__action], $this->__params);
@@ -98,8 +126,6 @@ class App {
             echo "Không tìm thấy controller file.";
             $this->loadError();
         }
-
-
     }
 
     public function loadError($name = '404', $data = []) {

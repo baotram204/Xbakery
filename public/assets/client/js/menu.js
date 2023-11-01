@@ -68,6 +68,17 @@ function clearFilters() {
   clearSelection('sort');
 }
 
+//handle element input of page: menu and detailProduct
+const quantityInputs = document.querySelectorAll('.js-quantity');
+quantityInputs.forEach(function (input) {
+  input.addEventListener('blur', function () {
+    var inputValue = input.value;
+
+    if (inputValue === "" || inputValue === "0") {
+      input.value = "1";
+    }
+  });
+});
 
 document.addEventListener('DOMContentLoaded', function () {
   const cards = document.querySelectorAll('.card');
@@ -94,12 +105,13 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   const product = document.querySelector('.js-detailProduct');
-  product.addEventListener('click', function (e){
-    const productId = product.getAttribute('data-product-id');
-    const quantity = document.querySelector("#item" + productId + "_quantity").value;
-    alert("Products added");
-    addToCart(productId, quantity);
-  });
+  if(product)
+    product.addEventListener('click', function (e){
+      const productId = product.getAttribute('data-product-id');
+      const quantity = document.querySelector("#item" + productId + "_quantity").value;
+      alert("Products added");
+      addToCart(productId, quantity);
+    });
 });
 
 
@@ -131,12 +143,10 @@ function showDetail(productId) {
 }
 
 function addToCart(productId, quantity) {
-  var rootUrl = window.location.protocol + "//" + window.location.host + "/xbakery/";
-
   // Gửi productId cho server
-  fetch(`/Xbakery/ajax/AddToCart.php`, {
+  fetch(`/Xbakery/ajax/Cart.php`, {
     method: 'POST',
-    body: JSON.stringify({ productId: productId, quantity: quantity}),
+    body: JSON.stringify({ productId: productId, quantity: quantity, status: "add"}),
     headers: {
       'Content-Type': 'application/json',
     },

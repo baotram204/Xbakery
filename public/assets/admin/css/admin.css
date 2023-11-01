@@ -1,0 +1,137 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+:root {
+    --main-color- : black;
+    --link-color- : #ccc;
+    --background- : #f1f2f6;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    background-color: var(--background-);
+
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: blue;
+}
+
+/* navbar */
+#navBar {
+    border-bottom: 2px solid black;
+    padding: 10px 0;
+    background-color: white;
+}
+
+#navBar  ul > li > a {
+    color: var(--link-color-);
+    font-weight: bold;
+}
+
+/* home */
+#home {
+}
+
+#home .card .subtitle {
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 5px;
+    background-color: var(--background-);
+}
+
+/* products */
+#products .form-add-product,
+#adminsAccount .form-add-product {
+    height: fit-content;
+    width: 500px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+#products .form-add-product .btn,
+#adminsAccount .form-add-product .btn {
+    width: 100%;
+}
+
+.existingProducts .image {
+    width: 100%;
+    height: 280px;
+}
+
+.existingProducts .image > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.existingProducts .btn {
+    width: 100%;
+}
+
+/* update order */
+#updateProduct .form-update-product {
+    height: fit-content;
+    width: 500px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+#updateProduct .form-update-product .btn {
+    width: 100%;
+}
+
+/* placed orders */
+#placedOrders .cardOrder {
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 5px;
+}
+
+#placedOrders .btn {
+    width: 100%;
+}
+
+#placedOrders .cardOrder p {
+    color: rgb(41, 41, 196);
+
+}
+
+/* add admin */
+#adminsAccount .existingAdmins .btn {
+    width: 100%;
+}
+
+/* comment */
+.existingmessages .card-body p {
+    color: rgb(41, 41, 196);
+}
+
+.existingmessages .btn{
+    width: 100%;
+}
+
+/* login */
+#login  {
+    width: 100%;
+    height: 100vh;
+}
+#login .form-login {
+    height: fit-content;
+    width: 500px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+#login .btn {
+    width: 100%;
+}

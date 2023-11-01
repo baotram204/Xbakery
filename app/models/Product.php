@@ -28,6 +28,8 @@ class Product extends Model
             $products["description"] = $value["description"];
             $products["ingredients"] = $value["ingredients"];
             $products["price"] = $value["price"];
+            $products["image_name"] = $value["image_name"];
+
 
             if($condition=="") {
                 $this->arrayProducts[] = $products;
@@ -38,5 +40,21 @@ class Product extends Model
 
         return $this->arrayProducts;
 
+    }
+
+    public function pushProduct($infor) {
+        $data = $this->db->insert($this->model_product, $infor);
+        return $data;
+    }
+
+    public function updateProduct($infor, $condition) {
+        $data = $this->db->update($this->model_product, $infor, $condition);
+        return $data;
+    }
+
+    public function deleteProduct($id) {
+        $condition = "item_id='$id'";
+        $data = $this->db->delete($this->model_product, $condition);
+        return $data;
     }
 }
