@@ -2,6 +2,39 @@
 <!-- products -->
 <section id="products">
     <div class="container">
+        <p class="success m-4">
+            <?php
+            if(isset($_SESSION['add_product_success'])) {
+                echo $_SESSION["add_product_success"];
+                unset($_SESSION['add_product_success']);
+            }
+            if(isset($_SESSION['delete_product_success'])) {
+                echo $_SESSION["delete_product_success"];
+                unset($_SESSION['delete_product_success']);
+            }
+            if(isset($_SESSION['update_product_success'])) {
+                echo $_SESSION["update_product_success"];
+                unset($_SESSION['update_product_success']);
+            }
+            ?>
+        </p>
+
+        <p class="error m-4">
+            <?php
+            if(isset($_SESSION['add_product_fail'])) {
+                echo $_SESSION["add_product_fail"];
+                unset($_SESSION['add_product_fail']);
+            }
+            if(isset($_SESSION['delete_product_fail'])) {
+                echo $_SESSION["delete_product_fail"];
+                unset($_SESSION['delete_product_fail']);
+            }
+            if(isset($_SESSION['update_product_fail'])) {
+                echo $_SESSION["update_product_fail"];
+                unset($_SESSION['update_product_fail']);
+            }
+            ?>
+        </p>
         <!-- form -->
         <form action="<?php echo _WEB_ROOT; ?>/admin/products/addProduct" method="post" class="form-add-product my-5 mx-auto" enctype="multipart/form-data">
             <h4 class="text-center my-3 fw-bold">Add Product</h4>

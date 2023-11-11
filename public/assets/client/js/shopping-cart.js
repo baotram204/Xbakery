@@ -277,7 +277,20 @@ function purchased(inforOrder) {
         .then(data => {
             if (data.status === "success") {
                 console.log(data.message);
+
+                const productsToBeRemoved = inforOrder[0].orderArrayProduct;
+                const productIdsToRemove = productsToBeRemoved.map(product => product.productId);
+
+                productIdsToRemove.forEach(productId => {
+                    const rows = document.querySelectorAll(`tr[data-product-id="${productId}"]`);
+                    rows.forEach(row => {
+                        row.parentNode.removeChild(row);
+                    });
+                });
+                updateTotal();
                 alert("Order Success");
+
+                window.location.href = rootUrl;
             } else {
                 console.log(data.message);
             }
@@ -286,6 +299,8 @@ function purchased(inforOrder) {
             console.error(error);
         });
 }
+
+
 
 document.addEventListener('DOMContentLoaded', function() {
     handleValueInput();

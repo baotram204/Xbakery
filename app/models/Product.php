@@ -7,7 +7,7 @@ use PDO;
 
 class Product extends Model
 {
-    private $model_product = "Items";
+    private $__table = "Items";
     protected $arrayProducts = [];
 
     public function __construct(){
@@ -16,9 +16,9 @@ class Product extends Model
 
     public function getListProducts($condition="") {
         if($condition == "") {
-            $data = $this->db->query("SELECT * FROM $this->model_product")->fetchAll(PDO::FETCH_ASSOC);
+            $data = $this->db->query("SELECT * FROM $this->__table")->fetchAll(PDO::FETCH_ASSOC);
         }else {
-            $data = $this->db->query("SELECT * FROM $this->model_product WHERE item_id = $condition")->fetchAll(PDO::FETCH_ASSOC);
+            $data = $this->db->query("SELECT * FROM $this->__table WHERE item_id = $condition")->fetchAll(PDO::FETCH_ASSOC);
         }
         foreach ($data as $value) {
             $products = [];
@@ -43,18 +43,23 @@ class Product extends Model
     }
 
     public function pushProduct($infor) {
-        $data = $this->db->insert($this->model_product, $infor);
+        $data = $this->db->insert($this->__table, $infor);
         return $data;
     }
 
     public function updateProduct($infor, $condition) {
-        $data = $this->db->update($this->model_product, $infor, $condition);
+        $data = $this->db->update($this->__table, $infor, $condition);
         return $data;
     }
 
     public function deleteProduct($id) {
         $condition = "item_id='$id'";
-        $data = $this->db->delete($this->model_product, $condition);
+        $data = $this->db->delete($this->__table, $condition);
         return $data;
+    }
+
+    public function countAllProduct() {
+        $data = $this->db->query("SELECT COUNT(*) AS total_products FROM $this->__table")->fetchAll(PDO::FETCH_ASSOC);
+        return $data[0]['total_products'];
     }
 }

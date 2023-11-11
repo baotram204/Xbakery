@@ -7,19 +7,45 @@ use PDO;
 
 class Customer extends Model
 {
-    private $model_customer = "Customers";
+    private $__table = "Customers";
+    public $arrayCustomer = [];
     public function __construct(){
         parent::__construct();
     }
 
-    function pushUserData($infor) {
-        $data = $this->db->insert($this->model_customer, $infor);
+    public function pushUserData($infor) {
+        $data = $this->db->insert($this->__table, $infor);
     }
-    function getLastIdCustomer() {
-        $sql = "SELECT customer_id FROM $this->model_customer ORDER BY customer_id DESC LIMIT 1";
+    public function getLastIdCustomer() {
+        $sql = "SELECT customer_id FROM $this->__table ORDER BY customer_id DESC LIMIT 1";
         $data = $this->db->query($sql)->fetch(PDO::FETCH_ASSOC);
 
         return $data['customer_id'];
     }
 
+    public function  getAllCustomer() {
+        $data = $this->db->query("SELECT * FROM $this->__table")->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($data as $value) {
+            $customer = [];
+            $customer["customer_id"] = $value["customer_id"];
+            $customer["name"] = $value["name"];
+            $customer["phone"] = $value["phone"];
+            $customer["delivery"] = $value["delivery"];
+            $customer["address"] = $value["address"];
+            $customer["comment"] = $value["comment"];
+
+            $this->arrayCustomer[] = $customer;
+        }
+        return $this->arrayCustomer;
+    }
+
+    public function deleteCustomer($id) {
+        $condition = "customer_id='$id'";
+        $data = $this->db->delete($this->__table, $condition);
+        return $data;
+    }
+    public function countAllComment() {
+        $data = $this->db->query("SELECT COUNT(*) AS total_comments FROM  $this->__table WHERE comment IS NOT NULL AND comment != ''")->fetchAll(PDO::FETCH_ASSOC);
+        return $data[0]['total_comments'];
+    }
 }

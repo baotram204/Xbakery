@@ -65,6 +65,11 @@ class Products extends Controller
             $this->model_product = $this->model('Product');
             $dataProduct = $this->model_product->pushProduct($infor);
             if ($dataProduct) {
+                $_SESSION['add_product_success'] = "Add product successful.";
+                header('Location: '._WEB_ROOT.'/admin/products');
+                exit;
+            } else {
+                $_SESSION['add_product_fail'] = "Add product fail.";
                 header('Location: '._WEB_ROOT.'/admin/products');
                 exit;
             }
@@ -78,6 +83,11 @@ class Products extends Controller
         $this->model_product = $this->model('Product');
         $dataProduct = $this->model_product->deleteProduct($id);
         if ($dataProduct) {
+            $_SESSION['delete_product_success'] = "Delete product successful.";
+            header('Location: '._WEB_ROOT.'/admin/products');
+            exit;
+        } else {
+            $_SESSION['delete_product_fail'] = "Delete product fail.";
             header('Location: '._WEB_ROOT.'/admin/products');
             exit;
         }
@@ -128,12 +138,14 @@ class Products extends Controller
             $checkUpdate = $this->model_product->updateProduct($infor, $condition);
 
             if ($checkUpdate) {
+                $_SESSION["update_product_success"] = "Update product successful. ";
                 echo '<script>window.history.go(-2);</script>';
                 exit();
             } else {
                 echo "Update failed";
             }
         } elseif (isset($_POST['go_back'])) {
+            $_SESSION["update_product_fail"] = "Update product fail. ";
             echo '<script>window.history.go(-2);</script>';
             exit();
         }

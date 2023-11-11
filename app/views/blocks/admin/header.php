@@ -13,12 +13,10 @@
                   <a class="nav-link" href="<?php echo _WEB_ROOT; ?>/admin/orders">Orders</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo _WEB_ROOT; ?>/admin/admin">Admins</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo _WEB_ROOT; ?>/admin/comments">Comments</a>
+                    <a class="nav-link" href="<?php echo _WEB_ROOT; ?>/admin/accountAdmin">Admins</a>
                 </li>
             </ul>
-            <div class="logout fw-bold">Logout</div>
+            <a href="<?php echo _WEB_ROOT;?>/admin/logout" class="logout fw-bold">Logout</a>
+
         </div>
     </section>

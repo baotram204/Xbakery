@@ -28,10 +28,14 @@ class Login extends Controller
             $data = $this->model_login->CheckAdmin($userName, $password);
             if($data) {
                 $newURL = _WEB_ROOT.'/admin/home';
+                $_SESSION['user'] = $userName;
+                $_SESSION['login'] = 'Login successful.';
                 header('Location: ' . $newURL);
                 exit;
             }else {
                 //when username or password are not correct
+                $_SESSION['login_failed'] = "Username or password false!";
+                header('Location: ' ._WEB_ROOT.'/admin/login');
             }
         }
 
