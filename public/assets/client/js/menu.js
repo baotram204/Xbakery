@@ -24,6 +24,7 @@ function applySelection(key) {
   switch (key) {
     case "occasion":
       currOccasionOptions = selectedOptions;
+      console.log(currOccasionOptions);
       break;
     case "dietary":
       currDietaryOptions = selectedOptions;

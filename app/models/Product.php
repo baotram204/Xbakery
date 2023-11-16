@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Cassandra\Numeric;
 use core\Model;
 use PDO;
 
@@ -17,8 +18,10 @@ class Product extends Model
     public function getListProducts($condition="") {
         if($condition == "") {
             $data = $this->db->query("SELECT * FROM $this->__table")->fetchAll(PDO::FETCH_ASSOC);
-        }else {
+        }elseif (is_numeric($condition)) {
             $data = $this->db->query("SELECT * FROM $this->__table WHERE item_id = $condition")->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            $data = $this->db->query("SELECT * FROM $this->__table WHERE $condition")->fetchAll(PDO::FETCH_ASSOC);
         }
         foreach ($data as $value) {
             $products = [];
@@ -30,12 +33,10 @@ class Product extends Model
             $products["price"] = $value["price"];
             $products["image_name"] = $value["image_name"];
 
-
-            if($condition=="") {
-                $this->arrayProducts[] = $products;
-            }else {
+            if (is_numeric($condition)) {
                 return $products;
             }
+            $this->arrayProducts[] = $products;
         }
 
         return $this->arrayProducts;

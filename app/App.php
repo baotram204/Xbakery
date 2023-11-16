@@ -20,8 +20,25 @@ class App {
         $this->__action = 'index';
         $this->__params = array();
 
+        $this->checkLogin();
         $this->handleURL();
     }
+
+    public function checkLogin() {
+        $isAdminPage = strpos($_SERVER['REQUEST_URI'], '/admin/') !== false;
+
+        $isLoginPage = strpos($_SERVER['REQUEST_URI'], '/admin/login') !== false;
+
+        if ($isAdminPage && !isset($_SESSION['user']) && !$isLoginPage) {
+            $_SESSION['no_message'] = 'Please log in to access the Control Panel';
+            header('Location: ' . _WEB_ROOT . '/admin/login');
+            $this->__controller = 'Login';
+            $this->checkFile("app/controllers/admin/" . ucfirst($this->__controller) . '.php', 'admin');
+            exit();
+        }
+    }
+
+
 
     public function getURL() {
         if (!empty($_SERVER['PATH_INFO'])) {
@@ -29,7 +46,6 @@ class App {
         } else {
             $url = "/";
         }
-
         return $url;
     }
 
@@ -105,12 +121,6 @@ class App {
             $controllerClassName = 'app\controllers\\'.$type.'\\' . ucfirst($this->__controller);
             if (class_exists($controllerClassName)) {
                 $controllerInstance = new $controllerClassName();
-//
-//                echo $this->__controller;
-//                echo $this->__action;
-//                echo "<pre>";
-//                print_r($this->__params);
-//                echo "</pre>";
 
                 if (method_exists($controllerInstance, $this->__action)) {
                     call_user_func_array([$controllerInstance, $this->__action], $this->__params);

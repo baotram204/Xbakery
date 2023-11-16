@@ -55,13 +55,13 @@
               ?>
 
             <div class="mb-3">
-              <input type="text" name="username" class="form-control" placeholder="enter your username ">
+              <input type="text" name="username" class="form-control" placeholder="enter your username " required>
             </div>
             <div class="mb-3">
-                <input type="password" name="password" class="form-control" placeholder="enter your password">
+                <input type="password" name="password" class="form-control" placeholder="enter your password" required>
               </div>
             <div class="mb-3">
-              <input type="password" name="re_password" class="form-control" placeholder="confirm your password">
+              <input type="password" name="re_password" class="form-control" placeholder="confirm your password" required>
             </div>
             <div class="mb-3">
               <input class="btn btn-success" type="submit" name="add_admin" value="Register Now"></input>
@@ -75,7 +75,7 @@
               <?php
                 foreach ($accountAdmins as $accountAdmin) {
                     ?>
-                    <form class="col-3 my-2" method="post" action="">
+                    <form class="col-3 my-2 h-100" method="post" action="">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title text-center">username: <?php echo $accountAdmin['username']; ?></h5>

@@ -1,7 +1,6 @@
     <!-- main img in about -->
     <section id="about">
         <div class="text-center">
-            <p class="my-5">Home > About</p>
             <h2 class="my-5">About</h2>
         </div>
 

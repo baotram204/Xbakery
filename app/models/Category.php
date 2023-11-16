@@ -20,6 +20,7 @@ class Category extends Model
         foreach ($data as $value) {
             $category = [];
             $category["id"] = $value["category_id"];
+            $category["item_id"] = $value["item_id"];
             $category["title"] = $value["title"];
             $this->arrayCategories[] = $category;
         }

@@ -120,6 +120,7 @@ class Products extends Controller
 
             $title = ($_POST['name'] == '') ? $dataProduct['title'] : $_POST['name'] ;
             $description = ($_POST['description'] == '') ? $dataProduct['description'] : $_POST['description'] ;
+            $description = $this->checkCharacterDescription($description);
             $ingredients = ($_POST['ingredients'] == '') ? $dataProduct['ingredients'] : $_POST['ingredients'] ;
             $price = ($_POST['price'] == '') ? $dataProduct['price'] : $_POST['price'] ;
             $category = ($_POST['product_category'] == '') ? $dataProduct['category_id'] : $_POST['product_category'] ;
@@ -150,6 +151,11 @@ class Products extends Controller
             exit();
         }
 
+    }
+
+    public function checkCharacterDescription($text) {
+        $char_find = "'";
+        return str_replace($char_find, "''", $text);
     }
 
 

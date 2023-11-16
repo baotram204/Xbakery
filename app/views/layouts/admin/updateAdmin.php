@@ -29,13 +29,13 @@
                     <input type="text" name="username" class="form-control" placeholder="<?php echo $accountAdmin['username'];?>">
                 </div>
                 <div class="mb-3">
-                    <input type="password" name="current_password" class="form-control" placeholder="enter your current password">
+                    <input type="password" name="current_password" class="form-control" placeholder="enter your current password" required>
                 </div>
                 <div class="mb-3">
-                    <input type="password" name="new_password" class="form-control" placeholder="enter your new password">
+                    <input type="password" name="new_password" class="form-control" placeholder="enter your new password" required>
                 </div>
                 <div class="mb-3">
-                    <input type="password" name="re_password" class="form-control" placeholder="confirm your new password">
+                    <input type="password" name="re_password" class="form-control" placeholder="confirm your new password" required>
                 </div>
                 <div class="mb-3">
                     <input class="btn btn-success" type="submit" name="update" value="Update"></input>

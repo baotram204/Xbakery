@@ -137,23 +137,33 @@ function handleImageClick() {
     });
 }
 
-function handleDeleteProduct() {
-    const elmentDeleteProducts = document.querySelectorAll('tr td.delete');
+function handleDeleteProduct(id= 0) {
+    if(id !=0){
+        deleteProduct(id);
+        const rows = document.querySelectorAll(`tr[data-product-id="${id}"]`);
+        rows.forEach(function (row) {
+            row.parentNode.removeChild(row);
+            handleGetInputs();
+            updateTotal();
+        });
+    }else {
+        const elmentDeleteProducts = document.querySelectorAll('tr td.delete');
 
-    elmentDeleteProducts.forEach(function (element){
-        element.addEventListener("click", function (){
-            const productId = element.closest('tr').getAttribute('data-product-id');
-            deleteProduct(productId);
+        elmentDeleteProducts.forEach(function (element){
+            element.addEventListener("click", function (){
+                const productId = element.closest('tr').getAttribute('data-product-id');
+                deleteProduct(productId);
 
-            //remove from DOM
-            const rows = document.querySelectorAll(`tr[data-product-id="${productId}"]`);
-            rows.forEach(function (row) {
-                row.parentNode.removeChild(row);
-                handleGetInputs();
-                updateTotal();
+                //remove from DOM
+                const rows = document.querySelectorAll(`tr[data-product-id="${productId}"]`);
+                rows.forEach(function (row) {
+                    row.parentNode.removeChild(row);
+                    handleGetInputs();
+                    updateTotal();
+                });
             });
         });
-    });
+    }
 }
 
 function deleteProduct(productId) {
@@ -181,6 +191,7 @@ function deleteProduct(productId) {
 function handleChooseProducts() {
     let productsChoosed = document.querySelectorAll('tr .custom-checkbox');
 
+    if (productsChoosed.length === 0 ) return -1;
     const subTotal = document.querySelector(".subTotal");
     const total = document.querySelector(".total");
     let delivery = document.querySelector(".delivery");
@@ -207,7 +218,7 @@ function handleChooseProducts() {
             total.innerHTML =  (totalValue + parseFloat(delivery.textContent)).toFixed(2)+ ' $';
         });
     });
-
+    return 0;
 }
 
 function getInformationOfUser() {
@@ -257,11 +268,26 @@ function getInformationOfUser() {
 // send data to server about data-product-id
 function handleCompleteOrder() {
     const btnOrder = document.querySelector(".submitOrder");
-    btnOrder.addEventListener("click", function (){
-        let inforOrder = getInformationOfUser();
-         purchased(inforOrder);
+    btnOrder.addEventListener("click", function () {
+        const productsChoosed = document.querySelectorAll('tr .custom-checkbox:checked');
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById("phone").value;
+        const address = document.getElementById("address").value;
+
+
+        if (productsChoosed.length > 0 ) {
+            if( name !== "" && phone !== "" && address !== "") {
+                let inforOrder = getInformationOfUser();
+                purchased(inforOrder);
+            }else {
+                alert("Please fill in name, phone, etc.");
+            }
+        } else {
+            alert("Please choose products");
+        }
     });
 }
+
 
 function purchased(inforOrder) {
     var rootUrl = window.location.protocol + "//" + window.location.host + "/xbakery/";
@@ -277,19 +303,10 @@ function purchased(inforOrder) {
         .then(data => {
             if (data.status === "success") {
                 console.log(data.message);
-
-                const productsToBeRemoved = inforOrder[0].orderArrayProduct;
-                const productIdsToRemove = productsToBeRemoved.map(product => product.productId);
-
-                productIdsToRemove.forEach(productId => {
-                    const rows = document.querySelectorAll(`tr[data-product-id="${productId}"]`);
-                    rows.forEach(row => {
-                        row.parentNode.removeChild(row);
-                    });
-                });
-                updateTotal();
                 alert("Order Success");
-
+                inforOrder[0]['orderArrayProduct'].forEach(function (product) {
+                    handleDeleteProduct(product.productId);
+                });
                 window.location.href = rootUrl;
             } else {
                 console.log(data.message);

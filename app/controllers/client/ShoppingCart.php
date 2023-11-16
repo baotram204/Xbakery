@@ -18,7 +18,7 @@ class ShoppingCart extends Controller
         $informationOfProducts = [];
         $total =0;
 
-        // Lấy dữ liệu sản phẩm từ phiên
+        // get data from session of ajax
         $this->cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 
         foreach ($this->cart as $index=>$product) {

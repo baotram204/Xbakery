@@ -37,6 +37,19 @@ class Cart extends Model
         return $this->arrayListCart;
     }
 
+    public function getOrder($id) {
+        $data = $this->db->query("SELECT * FROM $this->__table WHERE cart_id = $id")->fetchAll(PDO::FETCH_ASSOC);
+        $cart = [];
+        $cart["id"] = $data[0]["cart_id"];
+        $cart["customer_id"] = $data[0]["customer_id"];
+        $cart["quantity"] = $data[0]["quantity"];
+        $cart["total_money"] = $data[0]["total_money"];
+        $cart["payment_id"] = $data[0]["payment_id"];
+        $cart["status"] = $data[0]["status"];
+
+        return  $cart;
+    }
+
     public function pushCart($infor) {
         $data = $this->db->insert($this->__table, $infor);
         return $data;

@@ -40,16 +40,16 @@
             <h4 class="text-center my-3 fw-bold">Add Product</h4>
             <div class="mx-3">
                 <div class="mb-3">
-                    <input type="text" class="form-control" name="name" placeholder="enter product name">
+                    <input type="text" class="form-control" name="name" placeholder="Product name" required>
                 </div>
                 <div class="mb-3">
-                    <input type="text" class="form-control" name="price" placeholder="enter product price" pattern="[0-9]+([\.][0-9]+)?" title="Please enter a valid decimal number">
+                    <input type="text" class="form-control" name="price" placeholder="Product price" pattern="[0-9]+([\.][0-9]+)?" title="Please enter a valid decimal number">
                 </div>
                 <div class="mb-3">
-                    <input type="text" class="form-control" name="description" placeholder="enter description">
+                    <input type="text" class="form-control" name="description" placeholder="Description">
                 </div>
                 <div class="mb-3">
-                    <input type="text" class="form-control" name="ingredients" placeholder="enter ingredients">
+                    <input type="text" class="form-control" name="ingredients" placeholder="Ingredients">
                 </div>
                 <div class="mb-3">
                     <select class="form-select" aria-label="Default select example" name="category">
@@ -77,39 +77,58 @@
         <div class="existingProducts px-5">
             <div class="row">
                 <?php
-                    foreach ($products as $product){
-                    ?>
-                        <div class="col-4">
-                            <div class="card my-2">
-                                <div class="image">
-                                    <img src="<?php echo _WEB_ROOT; ?>/public/assets/admin/images/<?php echo $product["image_name"]; ?>" class="card-img-top" alt="...">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title text-center"><?php echo $product["title"]; ?></h5>
-                                    <div class="card-text">
-                                        <div class="fw-bold my-1">Price</div>
-                                        <p><?php echo $product["price"]; ?></p>
+                    if (count($products) == 0) {
+                        echo "<div class='error'>No product yet.</div>";
+                    } else {
+                        foreach ($products as $product){
+                            ?>
+                            <div class="col-4 my-3">
+                                <div class="card h-100">
+                                    <div class="image">
+                                        <img src="<?php echo _WEB_ROOT; ?>/public/assets/admin/images/<?php echo $product["image_name"]; ?>" class="card-img-top" alt="...">
                                     </div>
-                                    <div class="card-text">
-                                        <div class="fw-bold my-1">Descriptions</div>
-                                        <p><?php echo $product["description"]; ?></p>
-                                    </div>
-                                    <div class="card-text">
-                                        <div class="fw-bold my-1">Ingredients</div>
-                                        <p><?php echo $product["ingredients"]; ?></p>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <a href="<?php echo _WEB_ROOT; ?>/admin/products/updateProduct/<?php echo $product["id"];?>" class="btn btn-warning">Edit</a>
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center"><?php echo $product["title"]; ?></h5>
+                                        <div class="card-text">
+                                            <div class="fw-bold my-1">Price</div>
+                                            <p><?php echo $product["price"]; ?></p>
                                         </div>
-                                        <div class="col-6">
-                                            <a href="<?php echo _WEB_ROOT; ?>/admin/products/deleteProduct/<?php echo $product["id"];?>" class="btn btn-danger">Delete</a>
+                                        <div class="card-text">
+                                            <div class="fw-bold my-1">Category</div>
+                                            <p>
+                                                <?php
+                                                foreach ($categories as $category) {
+                                                    $id = $category["id"];
+                                                    $title = $category["title"];
+                                                    if ($product['category_id'] == $id) {
+                                                        echo $title;
+                                                        break;
+                                                    }
+                                                }
+                                                ?>
+                                            </p>
+                                        </div>
+                                        <div class="card-text">
+                                            <div class="fw-bold my-1">Descriptions</div>
+                                            <p><?php echo $product["description"]; ?></p>
+                                        </div>
+                                        <div class="card-text">
+                                            <div class="fw-bold my-1">Ingredients</div>
+                                            <p><?php echo $product["ingredients"]; ?></p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <a href="<?php echo _WEB_ROOT; ?>/admin/products/updateProduct/<?php echo $product["id"];?>" class="btn btn-warning">Edit</a>
+                                            </div>
+                                            <div class="col-6">
+                                                <a href="<?php echo _WEB_ROOT; ?>/admin/products/deleteProduct/<?php echo $product["id"];?>" class="btn btn-danger">Delete</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php
+                            <?php
+                        }
                     }
                 ?>
             </div>

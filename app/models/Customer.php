@@ -39,6 +39,18 @@ class Customer extends Model
         return $this->arrayCustomer;
     }
 
+    public function  getCustomer($id) {
+        $data = $this->db->query("SELECT * FROM $this->__table WHERE customer_id = $id")->fetchAll(PDO::FETCH_ASSOC);
+        $customer = [];
+        $customer["name"] = $data[0]["name"];
+        $customer["phone"] = $data[0]["phone"];
+        $customer["delivery"] =$data[0]["delivery"];
+        $customer["address"] = $data[0]["address"];
+        $customer["comment"] = $data[0]["comment"];
+
+        return $customer;
+    }
+
     public function deleteCustomer($id) {
         $condition = "customer_id='$id'";
         $data = $this->db->delete($this->__table, $condition);

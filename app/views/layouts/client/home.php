@@ -45,25 +45,24 @@
             made and presented with care
         </div>
 
-        <h1 class="my-5">Products</h1>
+        <h1 class="my-5">Categories</h1>
 
         <div class="row my-4">
             <?php
                 foreach ($gallery_product as $item) {
                     $category_id = $item['category_id'];
                     $item_id = $item['item_id'];
-                    $image_name = $item['image_name'];
                     $title = $item['title'];
                     ?>
                     <div class="col-12 col-md-6">
                         <div class="category">
                             <a href="<?php echo _WEB_ROOT; ?>/menu/category/<?php echo $category_id;  ?>" class="image">
-                                <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/breads/main-bread.jpg" alt="">
+                                <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/<?php echo $title;?>/main-<?php echo $title;?>.jpg" alt="">
                             </a>
 
                             <div class="content d-flex justify-content-between my-4">
                                 <h3> <?php echo $title; ?></h3>
-                                <p>15 products</p>
+<!--                                <p>15 products</p>-->
                             </div>
                         </div>
                     </div>

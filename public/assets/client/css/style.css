@@ -16,6 +16,20 @@ body {
     color: white;
 }
 
+.active {
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+.error {
+    color: red;
+}
+
+/*----------------------------------------------------*/
+
 .nav-link:focus, .nav-link:hover {
     color: #949191;
 }

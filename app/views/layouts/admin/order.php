@@ -29,9 +29,12 @@
             </p>
             <div class="row">
                 <?php
-                foreach ($customerOrderInfors as $customerOrderInfor) {
+                if (count($customerOrderInfors) == 0) {
+                    echo "<div class='error'>No order yet.</div>";
+                } else {
+                    foreach ($customerOrderInfors as $customerOrderInfor) {
                         ?>
-                        <div class="col-3 cardOrder p-3 my-2">
+                        <div class="col-3 cardOrder p-3 my-2 h-100">
                             <form action="" method="post">
                                 <div class="d-flex">
                                     user id :
@@ -92,6 +95,7 @@
                         </div>
                         <?php
                     }
+                }
                 ?>
             </div>
         </div>

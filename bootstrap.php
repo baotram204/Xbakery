@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__.'/vendor/autoload.php';
 define('_DIR_ROOT', dirname(__FILE__,1));
 

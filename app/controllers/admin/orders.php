@@ -56,11 +56,6 @@ class orders extends Controller
         return $data;
     }
 
-    public function getAllCustomer() {
-        $data = $this->model_customer->getAllCustomer();
-        return $data;
-    }
-
     public function getAllProductOfOrder() {
         $data = $this->model_orderProduct->getAllProduct();
         return $data;
@@ -73,7 +68,6 @@ class orders extends Controller
 
     public function handleDataRender() {
         $orders = $this->getAllOrder();
-        $customers = $this->getAllCustomer();
         $productsOrders = $this->getAllProductOfOrder();
         $paymentData = $this->getPayment();
 
@@ -83,10 +77,10 @@ class orders extends Controller
         }
 
         $combinedArray = [];
-
         foreach ($orders as $order) {
+            $customer_id = $order['customer_id'];
             $orderId = $order['id'];
-            $customer = $customers[1];
+            $customer = $this->model_customer->getCustomer($customer_id);
             $order['customer'] = $customer;
 
             $products = [];
@@ -101,9 +95,9 @@ class orders extends Controller
 
             foreach ($paymentData as $payment) {
                 if ($order['payment_id'] === $payment['payment_id']) {
-                    if ($payment['cash'] === 0) {
+                    if ($payment['cash'] === 1) {
                         $order['payment'] = 'payment';
-                    } else if ($payment['cash'] === 1) {
+                    } else if ($payment['cash'] === 0) {
                         $order['payment'] = 'cash';
                     }
                     break;
@@ -117,9 +111,10 @@ class orders extends Controller
     }
 
     public function deleteOrder($id){
-        $dataCart = $this->model_cart->getAllOrder();
+        $dataCart = $this->model_cart->getOrder($id);
         $customer_id = $dataCart['customer_id'];
         $payment_id = $dataCart['payment_id'];
+
 
         $deleteCustomer = $this->model_customer->deleteCustomer($customer_id);
         $deletePayment = $this->model_payment->deletePayment($payment_id);

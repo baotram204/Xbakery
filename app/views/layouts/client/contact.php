@@ -1,6 +1,7 @@
     <!-- contact -->
     <section id="contact">
         <div class="container my-5">
+            <h1 class="text-center my-5">Contact</h1>
             <div class="row">
                 <div class="col-12 col-md-6 bgr">
                     <div class="row m-4">
