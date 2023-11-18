@@ -32,6 +32,7 @@ class Product extends Model
             $products["ingredients"] = $value["ingredients"];
             $products["price"] = $value["price"];
             $products["image_name"] = $value["image_name"];
+            $products["deleted"] = $value["deleted"];
 
             if (is_numeric($condition)) {
                 return $products;
@@ -54,8 +55,11 @@ class Product extends Model
     }
 
     public function deleteProduct($id) {
+        $infor = array(
+            "deleted" => 1
+        );
         $condition = "item_id='$id'";
-        $data = $this->db->delete($this->__table, $condition);
+        $data = $this->db->update($this->__table, $infor, $condition);
         return $data;
     }
 

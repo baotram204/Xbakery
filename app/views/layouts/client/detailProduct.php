@@ -78,7 +78,7 @@
 
             <!-- list-prodcut-similar -->
             <?php
-            if($is_similarProduct) {
+            if($is_similarProduct && !empty($similarProduct)) {
                 ?>
                 <section id="list-product">
                     <div class="container-md">
@@ -127,6 +127,11 @@
                         </div>
                     </div>
                 </section>
+                <?php
+            } else {
+                ?>
+                <h2 class="text-center fw-bold my-4">Similar products you might like</h2>
+                <div class="error text-center">No product like this.</div>
                 <?php
             }
             ?>

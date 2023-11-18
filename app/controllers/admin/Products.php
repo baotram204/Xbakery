@@ -82,6 +82,14 @@ class Products extends Controller
     public function deleteProduct($id){
         $this->model_product = $this->model('Product');
         $dataProduct = $this->model_product->deleteProduct($id);
+        $image = $this->model_product->getListProducts($id)['image_name'];
+        $img_path = _DIR_ROOT."\public\assets\admin\images\\" . $image;
+        echo $img_path;
+
+        if (file_exists($img_path)) {
+            unlink($img_path);
+        }
+
         if ($dataProduct) {
             $_SESSION['delete_product_success'] = "Delete product successful.";
             header('Location: '._WEB_ROOT.'/admin/products');

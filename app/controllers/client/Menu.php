@@ -61,6 +61,7 @@ class Menu extends Controller
                 $description = $product["description"];
                 $price = $product["price"];
                 $image_name = $product["image_name"];
+                $deleted = $product['deleted'];
 
                 $array[] = [
                     'id' => $id,
@@ -68,7 +69,8 @@ class Menu extends Controller
                     'description' => $description,
                     'price' => $price,
                     'image_name' => $image_name,
-                    'name_category' => $nameCategory
+                    'name_category' => $nameCategory,
+                    'deleted' => $deleted
                 ];
 
             }
@@ -84,8 +86,6 @@ class Menu extends Controller
                 $titleCategory = $title;
             }
         }
-
-
 
 
         $this->data["sub_content"]["products"] = $array;

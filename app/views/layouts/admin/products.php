@@ -81,6 +81,7 @@
                         echo "<div class='error'>No product yet.</div>";
                     } else {
                         foreach ($products as $product){
+                            if(!$product['deleted']){
                             ?>
                             <div class="col-4 my-3">
                                 <div class="card h-100">
@@ -128,7 +129,7 @@
                                 </div>
                             </div>
                             <?php
-                        }
+                        }}
                     }
                 ?>
             </div>

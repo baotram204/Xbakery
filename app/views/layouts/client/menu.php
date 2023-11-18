@@ -184,7 +184,9 @@
     <section id="list-product">
         <div class="container-md">
             <div class="row my-4">
-                <?php foreach ($products as $product) { ?>
+                <?php foreach ($products as $product) {
+                    if(!$product['deleted']) {
+                    ?>
                     <div class="col-12 col-md-4 my-2">
                         <div class="card h-100 text-center" data-product-id = <?php echo $product["id"]; ?>>
                             <div class="card-body d-flex flex-column">
@@ -211,7 +213,7 @@
                             </div>
                         </div>
                     </div>
-                <?php } ?>
+                <?php }} ?>
             </div>
         </div>
     </section>
