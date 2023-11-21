@@ -192,6 +192,7 @@
                             <div class="card-body d-flex flex-column">
                                 <h4 class="card-title"><?php echo $product["title"]; ?></h4>
                                 <p class="card-text flex-fill"><?php echo $product["description"]; ?></p>
+                                <p class="card-text flex-fill"><?php echo $product["ingredients"]; ?></p>
 
                                 <div class="text-center mt-auto">
                                     <p><?php echo $product["price"]; ?> $</p>

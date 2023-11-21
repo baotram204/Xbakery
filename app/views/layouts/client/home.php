@@ -8,19 +8,19 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/homepage.jpg" class="d-block w-100" alt="...">
+                <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/homepage1.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5> Freshly baked everyday</h5>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
+                <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/homepage2.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5> Freshly baked everyday</h5>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
+                <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/homepage3.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5> Freshly baked everyday</h5>
                 </div>

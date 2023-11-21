@@ -38,7 +38,7 @@
                 </div>
                 <div class="mb-3">
                     <p class="px-1">Update Image</p>
-                    <input type="file" class="form-control" placeholder="<?= $product['image_name'] ?>">
+                    <input name="img" type="file" class="form-control" placeholder="<?= $product['image_name'] ?>">
                 </div>
                 <div class="mb-3">
                     <p class="px-1">Current Image</p>

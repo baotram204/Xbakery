@@ -46,7 +46,17 @@ class DetailProduct extends Controller
 
     public function similarProduct($text) {
         $this->model_product = $this->model("Product");
-        $condition = "( title LIKE '%$text%' OR description LIKE '%$text%' OR ingredients LIKE '%$text%') LIMIT 18446744073709551615 OFFSET 1";
+
+        $searchTerms = preg_split('/[,\s]+/', $text);
+
+        $sqlConditions = [];
+        foreach ($searchTerms as $term) {
+            $sqlConditions[] = "(title LIKE '%$term%' OR description LIKE '%$term%' OR ingredients LIKE '%$term%')";
+        }
+
+        $condition = implode(' OR ', $sqlConditions);
+        $condition .= ' LIMIT 18446744073709551615 OFFSET 1';
+
         $data = $this->model_product->getListProducts($condition);
         return $data;
     }

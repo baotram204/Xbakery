@@ -88,7 +88,7 @@
                             <?php
                             foreach ($similarProduct as $product) {
                                 ?>
-                                <div class="col-12 col-md-4">
+                                <div class="col-12 col-md-4 h-100">
                                     <div class="card mt-3 " data-product-id="<?php echo $product['id']; ?>">
                                         <div class="card-body text-center">
                                             <h4 class="card-title"><?php echo $product['title']; ?></h4>

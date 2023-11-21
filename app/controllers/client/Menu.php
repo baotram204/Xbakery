@@ -59,6 +59,7 @@ class Menu extends Controller
                 $id = $product["id"];
                 $title = $product["title"];
                 $description = $product["description"];
+                $ingredients = $product["ingredients"];
                 $price = $product["price"];
                 $image_name = $product["image_name"];
                 $deleted = $product['deleted'];
@@ -70,7 +71,8 @@ class Menu extends Controller
                     'price' => $price,
                     'image_name' => $image_name,
                     'name_category' => $nameCategory,
-                    'deleted' => $deleted
+                    'deleted' => $deleted,
+                    'ingredients' => $ingredients
                 ];
 
             }

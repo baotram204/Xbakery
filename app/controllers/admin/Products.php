@@ -109,7 +109,7 @@ class Products extends Controller
         if (isset($_POST['update'])) {
             $img_name_curr = $dataProduct['image_name'];
             $img_name_new = "";
-            if(!empty($_FILES['img']['tmp_name']) && is_uploaded_file($_FILES['img']['tmp_name']) && $_FILES['img']['name']!= '') {
+            if(isset($_FILES['img']['name']) && $_FILES['img']['name'] !='') {
                 $img_name_new = $_FILES['img']['name'];
                 $ext = explode('.', $img_name_new);
                 $ext = end($ext);
