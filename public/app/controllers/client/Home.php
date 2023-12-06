@@ -10,7 +10,7 @@ class Home extends Controller
     protected array $data=[];
     public function index() {
         $this->model_home = $this->model('Home');
-        $dataHome = $this->model_home->getList();
+        $dataHome = $this->model_home->getlist();
 
         $this->data["sub_content"]["gallery_product"] = $dataHome;
         $this->data['content'] = "\layouts\client\home";
