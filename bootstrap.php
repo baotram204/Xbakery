@@ -3,8 +3,12 @@ require_once __DIR__.'/vendor/autoload.php';
 define('_DIR_ROOT', dirname(__FILE__,1));
 
 //handle http root
-$web_root = (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') ?  'https://' : 'http://';
-$web_root .= $_SERVER['HTTP_HOST'];
+$web_root = (
+    (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') ||
+    (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+) ? 'https://' : 'http://';
+
+
 // Chuyển đổi các dấu gạch chéo ngược thành dấu gạch chéo thẳng '/'
 $document_root = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
 $dir_root = str_replace('\\', '/', _DIR_ROOT);
