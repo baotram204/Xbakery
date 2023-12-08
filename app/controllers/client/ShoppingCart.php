@@ -75,9 +75,6 @@ class ShoppingCart extends Controller
         // get data from session of ajax
         $this->cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 
-        var_dump($_SESSION['cart']);
-
-
         foreach ($this->cart as $index=>$product) {
             $infor = $this->getInforProduct($index, $product["quantity"]);
 

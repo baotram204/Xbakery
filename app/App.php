@@ -120,9 +120,9 @@ class App {
 
 
 
-            echo $this->__controller;
-            echo $this->__action;
-            var_dump($this->__params);
+//            echo $this->__controller;
+//            echo $this->__action;
+//            var_dump($this->__params);
 
             $controllerClassName = 'app\controllers\\'.$type.'\\' . ucfirst($this->__controller);
             if (class_exists($controllerClassName)) {

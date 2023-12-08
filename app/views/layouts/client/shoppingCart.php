@@ -98,12 +98,12 @@
                         <div class="row">
                             <div class="col-12 col-md-6  mb-4">
                                 Your name*
-                                <input type="text" id="name" placeholder="Your name" required>
+                                <input type="text" id="name" placeholder="Your name" >
 
                             </div>
                             <div class="col-12 col-md-6  mb-4">
                                 Phone number*
-                                <input type="phone" id="phone" placeholder="0558956815" required>
+                                <input type="phone" id="phone" placeholder="0558956815" >
                             </div>
                         </div>
 
@@ -123,7 +123,7 @@
                         <div class="row ">
                             <div class="col-12 mb-4">
                                 Delivery address*
-                                <input type="text" id="address" placeholder="Street, Apartment, number or etc" required>
+                                <input type="text" id="address" placeholder="Street, Apartment, number or etc" >
                             </div>
                         </div>
 

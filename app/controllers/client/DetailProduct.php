@@ -18,7 +18,7 @@ class DetailProduct extends Controller
 
             if ($data) {
                 $productId = $data->productId;
-                $response = ['status' => 'success', 'message' => 'add product successfully', 'productId'=>$productId];
+                $response = ['status' => 'success', 'message' => 'Show detail successfully', 'productId'=>$productId];
                 echo json_encode($response);
             } else {
                 // Xử lý khi dữ liệu không hợp lệ

@@ -2,6 +2,12 @@
 let quantityInputs = [];
 let orderArrayProduct = [];
 
+var currentURL = window.location.href;
+var urlParts = currentURL.split('/');
+var projectFolder = urlParts[3];
+
+var rootUrl = window.location.protocol + "//" + window.location.host + "/" + projectFolder + "/";
+
 function toggleChecked(element) {
     element.classList.toggle("checked");
 }
@@ -21,13 +27,15 @@ function handleOrderCheckoutClick(element) {
     }
 
     btnOptions.forEach(element => {
-        element.addEventListener("click", () => {
+        element.addEventListener("click", (event) => {
+            event.preventDefault();
             setActiveOption(element);
             displayOption(element.classList.contains("option1"));
         });
     });
 
-    orderCartButton.addEventListener("click", () => {
+    orderCartButton.addEventListener("click", (event) => {
+        event.preventDefault();
         setActiveOption(document.querySelector('.option2'));
         displayOption(false);
     });
@@ -73,12 +81,20 @@ function handleChangeOnInput() {
             const productId = this.closest('tr').getAttribute('data-product-id');
             let newQuantity = (this.value === "") ? 1 : parseInt(this.value);
             updateQuantityProduct(productId, newQuantity);
+            handleChooseProducts();
+        });
+
+        input.addEventListener('input', function () {
+            const productId = this.closest('tr').getAttribute('data-product-id');
+            let newQuantity = (this.value === "") ? 1 : parseInt(this.value);
+            updateQuantityProduct(productId, newQuantity);
+            handleChooseProducts();
         });
     });
 }
 
 function updateQuantityProduct(productId, newQuantity) {
-    fetch(`/Xbakery/ajax/Cart.php`, {
+    fetch(`${rootUrl}shoppingCart/index`, {
         method: 'POST',
         body: JSON.stringify({ productId: productId, quantity: newQuantity, status: "update" }),
         headers: {
@@ -130,7 +146,6 @@ function handleImageClick() {
 
     elementDetailProducts.forEach(function (element) {
         element.addEventListener('click', function () {
-            const rootUrl = window.location.protocol + "//" + window.location.host + "/xbakery/";
             const productId = this.closest('tr').getAttribute('data-product-id');
             window.location = `${rootUrl}detailProduct/showProduct/${productId}`;
         });
@@ -167,7 +182,7 @@ function handleDeleteProduct(id= 0) {
 }
 
 function deleteProduct(productId) {
-    fetch(`/Xbakery/ajax/Cart.php`, {
+    fetch(`${rootUrl}shoppingCart/index`, {
         method: 'POST',
         body: JSON.stringify({ productId: productId, status: "delete" }),
         headers: {
@@ -268,7 +283,8 @@ function getInformationOfUser() {
 // send data to server about data-product-id
 function handleCompleteOrder() {
     const btnOrder = document.querySelector(".submitOrder");
-    btnOrder.addEventListener("click", function () {
+    btnOrder.addEventListener("click", function (event) {
+        event.preventDefault();
         const productsChoosed = document.querySelectorAll('tr .custom-checkbox:checked');
         const name = document.getElementById('name').value;
         const phone = document.getElementById("phone").value;
@@ -289,11 +305,6 @@ function handleCompleteOrder() {
 }
 
 
-var currentURL = window.location.href;
-var urlParts = currentURL.split('/');
-var projectFolder = urlParts[3];
-
-var rootUrl = window.location.protocol + "//" + window.location.host + "/" + projectFolder +"/";
 
 function purchased(inforOrder) {
 
