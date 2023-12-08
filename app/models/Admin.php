@@ -7,7 +7,7 @@ use PDO;
 
 class Admin extends Model
 {
-    private $__table = 'Admins';
+    private $__table = 'admins';
     private $arrayListAdmin = [];
     private $arrayAdmin = [];
 

@@ -12,9 +12,9 @@
         if($page_title === "Login") {
             $this->render($content, $sub_content);
         }else {
-            $this->render('\blocks\admin\header');
+            $this->render('/blocks/admin/header');
             $this->render($content, $sub_content);
-            $this->render('\blocks\admin\footer');
+            $this->render('/blocks/admin/footer');
         }
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>

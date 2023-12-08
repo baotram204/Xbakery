@@ -14,11 +14,11 @@ class About extends Controller
         $this->model_about = '';
         $this->data["sub_content"]["gallery_product"] = $this->model_about;
         $this->data["page_title"] = "About";
-        $this->data['content'] = "\layouts\client\about";
+        $this->data['content'] = "/layouts/client/about";
     }
 
     public function  index() {
-        $this->render('\layouts\client\client_layout', $this->data);
+        $this->render('/layouts/client/client_layout', $this->data);
     }
 
 }

@@ -7,7 +7,7 @@ use PDO;
 
 class Home extends Model
 {
-    protected $__table="Categories";
+    protected $__table="categories";
     public function __construct(){
         parent::__construct();
     }

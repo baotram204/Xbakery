@@ -16,11 +16,15 @@ class Connection
 
         $servername = $config['host'];
         $username = $config['user'];
-//        $password = $config['pass'];
+
+        $password ='';
+        if (isset($config['pass'])) {
+            $password = $config['pass'];
+        }
         $db_name = $config['db'];
 
         try {
-            $this->_pdo = new PDO("mysql:host=$servername;dbname=$db_name", $username, '');
+            $this->_pdo = new PDO("mysql:host=$servername;dbname=$db_name", $username, $password);
 
             $this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             self::$conn = $this->_pdo;

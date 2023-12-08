@@ -8,7 +8,7 @@ use PDO;
 
 class Category extends Model
 {
-    protected $__table = "Categories";
+    protected $__table = "categories";
     protected $arrayCategories = [];
 
     public function __construct(){

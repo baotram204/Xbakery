@@ -7,7 +7,7 @@ use PDO;
 
 class Customer extends Model
 {
-    private $__table = "Customers";
+    private $__table = "customers";
     public $arrayCustomer = [];
     public function __construct(){
         parent::__construct();

@@ -25,13 +25,13 @@ class Menu extends Controller
         $this->data["sub_content"]["categories"] =$dataCategories;
         $this->data["sub_content"]["categoryID"] =$dataCategories;
         $this->data["page_title"] = 'Menu';
-        $this->data['content'] = "\layouts\client\menu";
+        $this->data['content'] = "/layouts/client/menu";
 
         //get products of categoryID
         $this->showProducts($categoryID);
 
         //render full categories
-        $this->render('\layouts\client\client_layout', $this->data);
+        $this->render('/layouts/client/client_layout', $this->data);
     }
 
 
@@ -94,7 +94,7 @@ class Menu extends Controller
         $this->data["sub_content"]["categoryID"] = $categoryID;
         $this->data["sub_content"]["titleCategory"] = $titleCategory;
 
-        $this->render('\layouts\client\client_layout', $this->data);
+        $this->render('/layouts/client/client_layout', $this->data);
 
 
     }

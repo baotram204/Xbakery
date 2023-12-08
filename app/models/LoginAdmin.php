@@ -6,7 +6,7 @@ use core\Model;
 use PDO;
 class LoginAdmin extends Model
 {
-    protected $__table = "Admins";
+    protected $__table = "admins";
 
     public function __construct(){
         parent::__construct();

@@ -7,7 +7,7 @@ use PDO;
 
 class Payment extends Model
 {
-    private $__table = "Payment";
+    private $__table = "payment";
     private $arraypayment = [];
 
     public function __construct(){

@@ -8,7 +8,7 @@ use PDO;
 
 class Product extends Model
 {
-    private $__table = "Items";
+    private $__table = "items";
     protected $arrayProducts = [];
 
     public function __construct(){

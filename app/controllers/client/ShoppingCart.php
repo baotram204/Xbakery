@@ -13,6 +13,60 @@ class ShoppingCart extends Controller
     private $model_orderProducts = [];
     protected array $data = [];
 
+    public function index() {
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = [];
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents("php://input"));
+
+            $productId = $data->productId;
+
+            $cart = $_SESSION['cart'];
+
+            if ($data->status == "delete") {
+                $productId = (int)$productId; // Đảm bảo rằng $productId là một số nguyên
+
+                if (array_key_exists($productId, $cart)) {
+                    unset($cart[$productId]);
+                } else {
+                    $response = ['status' => 'error', 'message' => 'Product not found in cart.'];
+                    echo json_encode($response);
+                    exit;
+                }
+            } else {
+                $quantity = $data->quantity;
+                // weather check change all quantity or add quantity card
+                if ($data->status == "update") {
+                    // weather product exit in cart
+                    if (array_key_exists($productId, $cart)) {
+                        $cart[$productId]['quantity'] = $quantity;
+                    } else {
+                        $cart[$productId] = ['quantity' => $quantity];
+                    }
+
+                } else if ($data->status == "add") {
+                    // weather product exit in cart
+                    if (array_key_exists($productId, $cart)) {
+                        $cart[$productId]['quantity'] += $quantity;
+                    } else {
+                        $cart[$productId] = ['quantity' => $quantity];
+                    }
+                }
+            }
+
+            $_SESSION['cart'] = $cart;
+
+            $response = ['status' => 'success', 'message' => 'Successfully'];
+            echo json_encode($response);
+
+        } else {
+            $response = ['status' => 'error', 'message' => 'Invalid request method.'];
+            echo json_encode($response);
+        }
+
+    }
 
     public function showCart() {
         $informationOfProducts = [];
@@ -20,6 +74,9 @@ class ShoppingCart extends Controller
 
         // get data from session of ajax
         $this->cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+
+        var_dump($_SESSION['cart']);
+
 
         foreach ($this->cart as $index=>$product) {
             $infor = $this->getInforProduct($index, $product["quantity"]);
@@ -32,9 +89,9 @@ class ShoppingCart extends Controller
         }
         $this->data["sub_content"]["products"] =$informationOfProducts;
         $this->data["page_title"] = 'Shopping Cart';
-        $this->data['content'] = "\layouts\client\shoppingCart";
+        $this->data['content'] = "/layouts/client/shoppingCart";
 
-        $this->render('\layouts\client\client_layout', $this->data);
+        $this->render('/layouts/client/client_layout', $this->data);
     }
 
     //get information and quantity from productID

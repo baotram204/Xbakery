@@ -118,11 +118,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+var currentURL = window.location.href;
+var urlParts = currentURL.split('/');
+var projectFolder = urlParts[3];
+
+var rootUrl = window.location.protocol + "//" + window.location.host + "/" + projectFolder + "/";
+
 function showDetail(productId) {
   // Gửi productId cho server
-  var rootUrl = window.location.protocol + "//" + window.location.host + "/xbakery/";
-
-  fetch(`/Xbakery/ajax/DetailProduct.php`, {
+  fetch(`${rootUrl}detailProduct/index`, {
     "method": 'POST',
     "body": JSON.stringify({ productId: productId }),
     "headers": {
@@ -145,7 +149,7 @@ function showDetail(productId) {
 
 function addToCart(productId, quantity) {
   // Gửi productId cho server
-  fetch(`/Xbakery/ajax/Cart.php`, {
+  fetch(`${rootUrl}shoppingCart/index`, {
     method: 'POST',
     body: JSON.stringify({ productId: productId, quantity: quantity, status: "add"}),
     headers: {

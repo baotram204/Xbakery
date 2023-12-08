@@ -23,7 +23,7 @@ class orders extends Controller
 
 //        $this->handleDataRender();
 
-        $this->data['content'] = "\layouts\admin\order";
+        $this->data['content'] = "/layouts/admin/order";
         $this->data["sub_content"]["customerOrderInfors"] = $this->handleDataRender();
         $this->data["page_title"] = "Orders";
 
@@ -48,7 +48,7 @@ class orders extends Controller
 
 
         //render view
-        $this->render('\layouts\admin\admin_layout', $this->data);
+        $this->render('/layouts/admin/admin_layout', $this->data);
     }
 
     public function getAllOrder() {

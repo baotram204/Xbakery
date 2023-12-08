@@ -12,10 +12,10 @@ class Home extends Controller
 
     public function index() {
         $this->data["sub_content"]["information"] = $this->handleRender();
-        $this->data['content'] = "\layouts\admin\home";
+        $this->data['content'] = "/layouts/admin/home";
         $this->data["page_title"] = "Home Admin";
         //render view
-        $this->render('\layouts\admin\admin_layout', $this->data);
+        $this->render('/layouts/admin/admin_layout', $this->data);
 
     }
 

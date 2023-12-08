@@ -8,6 +8,7 @@ $web_root = (
     (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
 ) ? 'https://' : 'http://';
 
+$web_root .= $_SERVER['HTTP_HOST'];
 
 // Chuyển đổi các dấu gạch chéo ngược thành dấu gạch chéo thẳng '/'
 $document_root = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);

@@ -14,7 +14,7 @@ class AccountAdmin extends Controller
         $this->model_admin = $this->model('Admin');
 
         $this->data["sub_content"]["accountAdmins"] = $this->model_admin->getAllAdmin();
-        $this->data['content'] = "\layouts\admin\adminAccount";
+        $this->data['content'] = "/layouts/admin/adminAccount";
         $this->data["page_title"] = "Account admin";
 
         if(isset($_POST['add_admin'])) {
@@ -40,7 +40,7 @@ class AccountAdmin extends Controller
         }
 
         //render view
-        $this->render('\layouts\admin\admin_layout', $this->data);
+        $this->render('/layouts/admin/admin_layout', $this->data);
     }
 
     public function addNewAdmin($username, $password) {
@@ -77,7 +77,7 @@ class AccountAdmin extends Controller
         $this->model_admin = $this->model('Admin');
         $informationOfAccount = $this->model_admin->getAdmin($id);
         $this->data["sub_content"]["accountAdmin"] = $informationOfAccount;
-        $this->data['content'] = "\layouts\admin\updateAdmin";
+        $this->data['content'] = "/layouts/admin/updateAdmin";
         $this->data["page_title"] = "Update admin";
 
         if(isset($_POST['update']) && $_POST['update'] == 'Update') {
@@ -104,7 +104,7 @@ class AccountAdmin extends Controller
                 }
             }
         }
-        $this->render('\layouts\admin\admin_layout', $this->data);
+        $this->render('/layouts/admin/admin_layout', $this->data);
     }
 
 }

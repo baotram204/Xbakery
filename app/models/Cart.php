@@ -6,7 +6,7 @@ use core\Model;
 use PDO;
 class Cart extends Model
 {
-    private $__table = "Carts";
+    private $__table = "carts";
     private $arrayListCart = [];
 
     public function __construct(){

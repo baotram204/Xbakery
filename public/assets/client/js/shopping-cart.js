@@ -289,8 +289,13 @@ function handleCompleteOrder() {
 }
 
 
+var currentURL = window.location.href;
+var urlParts = currentURL.split('/');
+var projectFolder = urlParts[3];
+
+var rootUrl = window.location.protocol + "//" + window.location.host + "/" + projectFolder +"/";
+
 function purchased(inforOrder) {
-    var rootUrl = window.location.protocol + "//" + window.location.host + "/xbakery/";
 
     fetch(`${rootUrl}shoppingCart/pushData`, {
         method: 'POST',
@@ -316,6 +321,7 @@ function purchased(inforOrder) {
             console.error(error);
         });
 }
+
 
 
 

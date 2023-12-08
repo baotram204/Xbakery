@@ -11,7 +11,7 @@ document.getElementById('searchInput').addEventListener('keypress', function(eve
 
 // search by ajax
 function performSearch(searchTerm) {
-    var rootUrl = window.location.protocol + "//" + window.location.host + "/xbakery/";
+    var rootUrl = window.location.protocol + "//" + window.location.host + "/";
 
     fetch(`${rootUrl}Search/showProduct?searchTerm=${searchTerm}`, {
         method: 'GET',

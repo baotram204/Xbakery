@@ -11,14 +11,14 @@ class Products extends Controller
     protected array $data=[];
 
     public function index() {
-        $this->data['content'] = "\layouts\admin\products";
+        $this->data['content'] = "/layouts/admin/products";
         $this->data["page_title"] = "Products";
 
         $this->getInforCategory();
         $this->loadProduct();
 
         //render view
-        $this->render('\layouts\admin\admin_layout', $this->data);
+        $this->render('/layouts/admin/admin_layout', $this->data);
 
     }
 
@@ -171,11 +171,11 @@ class Products extends Controller
         $this->model_product = $this->model('Product');
         $dataProduct = $this->model_product->getListProducts($id);
 
-        $this->data['content'] = "\layouts\admin\updateProduct";
+        $this->data['content'] = "/layouts/admin/updateProduct";
         $this->data["sub_content"]["product"] = $dataProduct;
         $this->data["page_title"] = "Update Product";
 
-        $this->render('\layouts\admin\admin_layout', $this->data);
+        $this->render('/layouts/admin/admin_layout', $this->data);
         return $dataProduct;
     }
 
