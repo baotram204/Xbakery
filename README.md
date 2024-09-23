@@ -11,11 +11,19 @@ Welcome to the **XBakery**! This project is an online bakery platform built with
 - [Features](#features)
 - [Installation](#installation)
 - [Database Structure](#database-structure)
+- [Acknowledgments](#acknowledgments)
 
 ## Introduction
-**XBakery** is a dynamic web application designed for bakery shops to manage their products and customer orders effectively. The platform provides features such as adding, updating, and deleting bakery products, along with handling customer orders. The focus is on delivering a seamless user experience with fast and efficient database management.
+XBakery is a web application created for bakery shops to help manage their products and customer orders more effectively. The platform includes features for adding, updating, and deleting bakery items, as well as handling customer orders. The goal is to provide a user-friendly experience with efficient database management.
 
-The project demonstrates the integration of front-end and back-end technologies, implementing secure and scalable practices to ensure a robust application for real-world use.
+This project illustrates the use of both front-end and back-end technologies, incorporating basic practices to create a functional application suitable for small-scale use.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/32aadaf1-094b-48e6-8c49-aecc379c8d25" alt="Cart Order XBakery" width="250" style="margin-right: 20px;"/>
+  <img src="https://github.com/user-attachments/assets/7b53684c-52d4-477d-a898-fdfc0a8065d1" alt="Cart Checkout XBakery" width="270" style="margin-right: 20px;"/>
+  <img src="https://github.com/user-attachments/assets/ef26850a-364c-4686-bdaa-f5393daf6339" alt="Dashboard Admin XBakery" width="270" />
+</p>
+
 
 ## Technologies Used
 XBakery employs several technologies and programming languages to create a full-stack application. These include:
@@ -58,12 +66,19 @@ To run the XBakery website locally, follow these steps:
     ```bash
     $db_config = [
         'host' => 'localhost',
-        'dbname' => 'xbakery_db',
+        'dbname' => 'xbakery',
         'user' => 'root',
         'password' => '',
     ];
 3. Run the SQL script to set up the database schema and populate initial data.
 
-4. Start the server using a local PHP environment like XAMPP or MAMP.
+4. Start the server using a local PHP environment like XAMPP, LARAGON.
 
 5. Access the website by navigating to http://localhost/xbakery.
+
+6. Access the following link http://localhost/xbakery/admin to go to the admin page with username `xiu` and password `123`.
+   
+## Acknowledgments
+
+The UI images used in this project were sourced from various online resources. While specific links are not available, I appreciate the contributions of the creators and platforms that provided these images.
+
