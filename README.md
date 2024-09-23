@@ -2,14 +2,15 @@
 
 Welcome to the **XBakery**! This project is an online bakery platform built with a focus on efficiency, maintainability, and scalability. The application allows users to browse through various bakery products, place orders, and manage bakery operations.
 
+![main-xbakery](https://github.com/user-attachments/assets/a6fedc92-4fa6-4a86-899e-6c2b5813d643)
+
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Technologies Used](#technologies-used)
 - [Features](#features)
 - [Installation](#installation)
 - [Database Structure](#database-structure)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 **XBakery** is a dynamic web application designed for bakery shops to manage their products and customer orders effectively. The platform provides features such as adding, updating, and deleting bakery products, along with handling customer orders. The focus is on delivering a seamless user experience with fast and efficient database management.
@@ -52,7 +53,7 @@ To run the XBakery website locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/XBakery.git
+   git clone https://github.com/baotram204/XBakery.git
 2. Configure your database by updating the connection settings in the configuration file (config.php):
     ```bash
     $db_config = [
